@@ -5,11 +5,11 @@ import asyncio
 @Client.on_message(filters.command("start"))
 async def start_msg(client, message):
 	await message.reply_text(
-		f"Hi {message.from_user.mention}, I am YouTube Channel DL Bot.\n\nClick Help button to know how to use.",
+		f"درود بر {message.from_user.mention} من بات دانلودر nlm هستم و میتونم فایل مورد علاقتو از یوتیوب دانلود کنم,",
 		reply_markup=InlineKeyboardMarkup(
 				[[
-					InlineKeyboardButton("🛠 Help", callback_data=f"help"),
-					InlineKeyboardButton("🧰 About", callback_data=f"about")
+					InlineKeyboardButton("🛠 کمک", callback_data=f"کمک"),
+					InlineKeyboardButton("🧰 درباره ما", callback_data=f"درباره ما")
 				]]
 			),
 		quote=True)
@@ -19,26 +19,26 @@ async def cb_handler(client, update):
 	cb_data = update.data
 	
 	if "help" in cb_data:
-		await update.message.edit_text("Just Send a YouTube channel URL with Format(Audio/Video).\nExample:\n`https://youtube.com/channel/UCfwavlAv6xw video`",
+		await update.message.edit_text("فقط کافیه لینک مورد علاقتو به فرم روروبر برام ارسال کنی و کنارش یکی از کلمات(Audio/Video) رو بذاری تا بتونم بفهمم فیلم اون رو میخوای یا اهنگشو.\nبرای مثال :\n`https://www.youtube.com/watch?v=Fifk9DfJt6o video",
 			reply_markup=InlineKeyboardMarkup(
 				[[
-					InlineKeyboardButton("🧰 About", callback_data=f"about"),
-					InlineKeyboardButton("🔙 Back", callback_data=f"back")
+					InlineKeyboardButton("🧰 درباره ما", callback_data=f"درباره ما"),
+					InlineKeyboardButton("🔙 کمک", callback_data=f"کمک")
 				]]
 			))
 	elif "about" in cb_data:
 		await update.message.edit_text("Language: Python\nFramework: Pyrogram\nEngine: YTDL",
 			reply_markup=InlineKeyboardMarkup(
 				[[
-					InlineKeyboardButton("🛠 Help", callback_data=f"help"),
-					InlineKeyboardButton("🔙 Back", callback_data=f"back")
+                                        InlineKeyboardButton("🛠 کمک", callback_data=f"کمک"),
+					InlineKeyboardButton("🧰 درباره ما", callback_data=f"درباره ما")
 				]]
 			))
 	elif "back" in cb_data:
-		await update.message.edit_text(f"Hi {update.from_user.mention}, I am YouTube Channel DL Bot.\n\nClick Help button to know how to use.",
+		await update.message.edit_text(f"سلامی دوباره بر {update.from_user.mention}, برای دریافت راهنمایی گزینه کمک رو بزنید  ",
 			reply_markup=InlineKeyboardMarkup(
 				[[
-					InlineKeyboardButton("🛠 Help", callback_data=f"help"),
-					InlineKeyboardButton("🧰 About", callback_data=f"about")
+					InlineKeyboardButton("🛠 کمک", callback_data=f"کمک"),
+					InlineKeyboardButton("🧰 درباره ما", callback_data=f"درباره ما")
 				]]
 			))
