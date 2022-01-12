@@ -119,7 +119,7 @@ async def uloader(client, message):
 
     url = message.text.split(None, 1)[0]
     typee = message.text.split(None, 1)[1]
-    if url.__contains__("/channel/") or url.__contains__("/c/") or url.__contains__("/watch/"):
+    if url.__contains__("youtube") or url.__contains__("/c/"):
         msg = await client.send_message(message.chat.id, '`Processing...`', reply_to_message_id=message.message_id)
     else:
         return await client.send_message(message.chat.id, '`I think this is invalid link...`', reply_to_message_id=message.message_id)
