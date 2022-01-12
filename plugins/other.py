@@ -23,7 +23,7 @@ async def cb_handler(client, update):
 			reply_markup=InlineKeyboardMarkup(
 				[[
 					InlineKeyboardButton("🧰 درباره ما", callback_data=f"درباره ما"),
-					InlineKeyboardButton("🔙 برشگت", callback_data=f"برگشت")
+					InlineKeyboardButton("🔙 برگشت", callback_data=f"🔙 برگشت")
 				]]
 			))
 	elif "درباره ما" in cb_data:
@@ -31,10 +31,10 @@ async def cb_handler(client, update):
 			reply_markup=InlineKeyboardMarkup(
 				[[
                                         InlineKeyboardButton("🛠 کمک", callback_data=f"کمک"),
-					InlineKeyboardButton("🔙 برشگت", callback_data=f"برگشت")
+					InlineKeyboardButton("🔙 برگشت", callback_data=f"🔙 برگشت")
 				]]
 			))
-	elif "برکشت" in cb_data:
+	elif "🔙 برگشت" in cb_data:
 		await update.message.edit_text(f"سلامی دوباره بر {update.from_user.mention}, برای دریافت راهنمایی گزینه کمک رو بزنید  ",
 			reply_markup=InlineKeyboardMarkup(
 				[[
