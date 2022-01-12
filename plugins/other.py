@@ -19,7 +19,7 @@ async def cb_handler(client, update):
 	cb_data = update.data
 	
 	if "کمک" in cb_data:
-		await update.message.edit_text("فقط کافیه لینک مورد علاقتو به فرم روروبر برام ارسال کنی و کنارش یکی از کلمات(Audio/Video) رو بذاری تا بتونم بفهمم فیلم اون رو میخوای یا اهنگشو.\nبرای مثال :\n`https://www.youtube.com/watch?v=Fifk9DfJo video",
+		await update.message.edit_text("فقط کافیه لینک مورد علاقتو به فرم زیر برام ارسال کنی و کنارش یکی از کلمات(Audio/Video) رو بذاری تا بتونم بفهمم فیلم اون رو میخوای یا اهنگشو.\nبرای مثال :\n`https://www.youtube.com/watch?v=Fifk9DfJo video",
 			reply_markup=InlineKeyboardMarkup(
 				[[
 					InlineKeyboardButton("🧰 درباره ما", callback_data=f"درباره ما"),
