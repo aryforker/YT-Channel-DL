@@ -113,16 +113,16 @@ async def uloader(client, message):
 
     if is_downloading:
         return await message.reply_text(
-            "`Another download is in progress, try again after sometime.`",
+            "`شما یک دانلود دیگری در صف دارید`",
             quote=True
         )
 
     url = message.text.split(None, 1)[0]
     typee = message.text.split(None, 1)[1]
     if url.__contains__("youtube") or url.__contains__("/c/"):
-        msg = await client.send_message(message.chat.id, '`Processing...`', reply_to_message_id=message.message_id)
+        msg = await client.send_message(message.chat.id, '`در حال پردازش`', reply_to_message_id=message.message_id)
     else:
-        return await client.send_message(message.chat.id, '`I think this is invalid link...`', reply_to_message_id=message.message_id)
+        return await client.send_message(message.chat.id, '`لینک شما قابل قبول نیست`', reply_to_message_id=message.message_id)
 
     out_folder = f"downloads/{uuid.uuid4()}/"
     if not os.path.isdir(out_folder):
@@ -202,7 +202,7 @@ async def uloader(client, message):
         await client.send_message(LOG_CHNL, f"Name: {message.from_user.mention}\nURL: {url} {typee}")
 
     try:
-        await msg.edit("`Downloading...`")
+        await msg.edit("`در حال دانلود`")
         loop = get_running_loop()
         await loop.run_in_executor(None, partial(ytdl_dowload, url, opts))
         filename = sorted(get_lst_of_files(out_folder, []))
@@ -212,7 +212,7 @@ async def uloader(client, message):
 
     c_time = time.time()
     try:
-        await msg.edit("`Uploading...`")
+        await msg.edit("`در حال اپلود`")
     except MessageNotModified:
         pass
 
@@ -233,7 +233,7 @@ async def uloader(client, message):
                             duration=fduration,
                             progress=progress_bar,
                             progress_args=(
-                                "Uploading..", msg, c_time
+                                "در حال اپلود`", msg, c_time
                             )
                         )
                     except Exception as e:
@@ -266,7 +266,7 @@ async def uloader(client, message):
                             height=fheight,
                             progress=progress_bar,
                             progress_args=(
-                                "Uploading..", msg, c_time
+                                "در حال اپلود`", msg, c_time
                             )
                         )
                     except Exception as e:
@@ -291,7 +291,7 @@ def get_lst_of_files(input_directory, output_lst):
 
 async def del_old_msg_send_msg(msg, client, message):
     await msg.delete()
-    await client.send_message(message.chat.id, "`Upload Success!`")
+    await client.send_message(message.chat.id, "`با موفقیت اپلود شد`")
 
 def get_metadata(file):
     fwidth = None
@@ -313,7 +313,7 @@ async def pyro_fsub(c, message, fsub):
         if user.status == "kicked":
             await c.send_message(
                 chat_id=message.chat.id,
-                text="Sorry, You are Banned to use me.",
+                text="متاسفانه شما در لیست بن شدگان قرار دارید ",
                 parse_mode="markdown",
                 disable_web_page_preview=True
             )
@@ -322,11 +322,11 @@ async def pyro_fsub(c, message, fsub):
     except UserNotParticipant:
         await c.send_message(
             chat_id=message.chat.id,
-            text="**Please Join My Updates Channel to Use Me!**",
+            text="**لطفا اول در چنل ما عضو بشوید**",
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton("Join Now", url=f"https://t.me/{UPDTE_CHNL}")
+                        InlineKeyboardButton("جوین شدن", url=f"https://t.me/{UPDTE_CHNL}")
                     ]
                 ]
             )
@@ -336,7 +336,7 @@ async def pyro_fsub(c, message, fsub):
         print(kk)
         await c.send_message(
             chat_id=message.chat.id,
-            text="Something went Wrong.",
+            text="اشتباهی رخ داد لطفا به @Aryana_gha  اطلاع بدهید",
             parse_mode="markdown",
             disable_web_page_preview=True)
         return False
